@@ -8,11 +8,22 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import Link from "next/link";
+type PostType = {
+  title: string
+  description: string
+  url: string | null
+  urlToImage: string | null
+  publishedAt: string
+  author: string
+}
 
+type NewsApiResponse = {
+  articles: PostType[]
+}
 export default async function Home() {
   console.log('env', process.env.NEWS_URL)
   const data = await fetch(`${process.env.NEWS_URL}?category=science&apiKey=${process.env.NEWS_API_KEY}`)
-  const posts = await data.json()
+  const posts: NewsApiResponse = await data.json()
   console.log('posts', posts)
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 sm:p-16 font-sans bg-white text-black">
@@ -20,7 +31,7 @@ export default async function Home() {
         <h1 className="text-3xl font-bold text-center">Notes from Someone</h1>
 
         <div className="blog-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
-          {posts.articles?.slice(0, 10).map((post, index) => (
+          {posts.articles?.slice(0, 10).map((post: PostType, index) => (
             <Card key={index} className="w-full max-w-sm mx-auto shadow-md rounded-lg overflow-hidden">
               <CardHeader className="p-4">
                 <CardTitle className="text-base font-semibold mb-1">
