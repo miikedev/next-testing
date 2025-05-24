@@ -11,8 +11,8 @@ import Link from "next/link";
 type PostType = {
   title: string
   description: string
-  url: string | null
-  urlToImage: string | null
+  url: string
+  urlToImage: string
   publishedAt: string
   author: string
 }
