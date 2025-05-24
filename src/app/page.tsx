@@ -29,7 +29,6 @@ export default async function Home() {
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen p-8 sm:p-16 font-sans bg-white text-black">
       <main className="w-full flex flex-col items-center gap-12">
         <h1 className="text-3xl font-bold text-center">Notes from Someone</h1>
-
         <div className="blog-list grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
           {posts.articles?.slice(0, 10).map((post: PostType, index) => (
             <Card key={index} className="w-full max-w-sm mx-auto shadow-md rounded-lg overflow-hidden">
@@ -56,7 +55,7 @@ export default async function Home() {
                 <p className="text-sm text-gray-700 line-clamp-3">{post.description}</p>
               </CardContent>
               <CardContent>
-                <Link href={post.url} className="text-xs text-blue-400">See more...</Link>
+                <Link href={post?.url} className="text-xs text-blue-400">See more...</Link>
               </CardContent>
 
               <CardFooter className="p-4 pt-0">
